@@ -28,4 +28,12 @@ def updateTask(request, pk):
 
     return render(request, 'tasks/update_task.html', {'form':form})
 
+def deleteTask(request, pk):
+    item = Task.objects.get(id=pk)
+
+    if request.method == 'POST':
+        item.delete()
+        return redirect('/')
+
+    return render(request, 'tasks/delete.html', {'item':item})
     
