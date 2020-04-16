@@ -5,6 +5,15 @@
     <title>Todo</title>
 </head>
 <body>
-    <h3>List</h3>
+    <h3>To Do</h3>
+    <form action="/" method="POST">
+        {% csrf_token %}
+        {{form.title}}
+        <input type="submit" value="Create Task">
+    </form>
+    {% for task in tasks %}
+        <a href="{% url 'update_task' task.id %}">Update</a>
+        <p>{{task}}</p>
+    {% endfor %}
 </body>
 </html>
